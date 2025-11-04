@@ -1,24 +1,39 @@
-# This is a basic workflow to help you get started with Actions
 name: Test and Deploy Workflow
-# Controls when the workflow will run
 on: push
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  Test-Code:
+  Lint:
     runs-on: ubuntu-latest
     steps: 
       - name: Get code
         uses: actions/checkout@v3
       - name: Install Dependencies
         run: npm ci
-      - name: Run lint
-        run: npm init @eslint/config
       - name: run lint
         run: npm run lint
+  Test: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: npm ci
       - name: Run Test
         run: npm run test
+  Build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: npm ci
       - name: run Build
         run: npm run build
+  Deploy:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: npm ci
       - name: Deploy Code
         run: echo "Deploying..."
