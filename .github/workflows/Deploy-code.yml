@@ -16,19 +16,11 @@ jobs:
           node-veriosn: 18
       - name: Install Dependencies
         run: npm ci
-      - name: Run tests
-        run: npm test
-
-  Deploy-Code: 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Install NodejS
-        uses: actions/setup-node@v3
-        with: 
-          node-veriosn: 18
-      - name: Install Dependencies
-        run: npm ci
-      - name: Deploy package
-        run: echo "Deploying...."
+      - name: Run lint
+        run: npm run lint
+      - name: Run Test
+        run: npm run test
+      - name: run Build
+        run: npm run build
+      - name: Deploy Code
+        run: echo "Deploying..."

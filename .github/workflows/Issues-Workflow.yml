@@ -1,5 +1,5 @@
 name: Issues triggered workflow
-on: Issues
+on: issues
 jobs:
   Output-Message:
     runs-on: ubuntu-latest
