@@ -1,14 +1,12 @@
 # This is a basic workflow to help you get started with Actions
-name: Test and Deploy
+name: Test and Deploy Workflow
 # Controls when the workflow will run
 on: push
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   Test-Code:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps: 
       - name: Get code
         uses: actions/checkout@v3
@@ -20,5 +18,17 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm test
+
+  Deploy-Code: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install NodejS
+        uses: actions/setup-node@v3
+        with: 
+          node-veriosn: 18
+      - name: Install Dependencies
+        run: npm ci
       - name: Deploy package
         run: echo "Deploying...."
